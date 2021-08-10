@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Home-Page</title>
+    <link rel="stylesheet" href="./login.css.css" />
+  </head>
+  <body>
+    <div class="body-container">
+      <div class="container">
+        <div class="form-wrapper">
+          <img src="" alt="" />
+          <h1 class="heading">Login/Register</h1>
+          <div class="form-box">
+            <form
+              id="contact-form"
+              action="https://evening-island-91230.herokuapp.com/user-login/"
+              method="POST"
+            >
+              <!--For the email label-->
+              <div class="form-group">
+                <label class="from-labels" for="email">Your email</label>
+                <input
+                  class="form-input"
+                  type="email"
+                  name="user_email"
+                  id="email"
+                  placeholder="example@myemail.com"
+                  required
+                />
+              </div>
+              <!--For the contact label-->
+              <div class="form-group">
+                <label class="from-labels" for="contact">Password</label>
+                <input
+                  class="form-input"
+                  type="password"
+                  name="password"
+                  id="contact"
+                  placeholder="enter your password"
+                  required
+                />
+              </div>
+
+              <!-- The submit button-->
+              <div class="buttons-flex">
+                <button class="button" type="submit">login</button>
+
+                <a class="register-link" href="./login.html">register</a>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
