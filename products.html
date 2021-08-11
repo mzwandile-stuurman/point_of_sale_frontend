@@ -9,6 +9,12 @@
     <link rel="stylesheet" href="./products.css" />
   </head>
   <body>
+    <div id="filters">
+      <form onsubmit="event.preventDefault(); searchForProducts()">
+        <input type="text" required id="searchTerm" />
+        <button type="submit">search</button>
+      </form>
+    </div>
     <div id="products-container"></div>
   </body>
 </html>
