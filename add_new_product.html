@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Add New</title>
+  </head>
+  <body>
+    <h3>enter product details</h3>
+    <form
+      id="contact-form"
+      action="https://evening-island-91230.herokuapp.com/create-products/"
+      method="POST"
+    >
+      <!--For the email label-->
+      <div class="form-group">
+        <label class="from-labels" for="email">Product name</label>
+        <input
+          class="form-input"
+          type="text"
+          name="prod_name"
+          id="prod_name"
+          placeholder="Enter product name"
+          required
+        />
+      </div>
+      <div class="form-group">
+        <label class="from-labels" for="email">Product price</label>
+        <input
+          class="form-input"
+          type="number"
+          name="price"
+          id="price"
+          placeholder="Enter product price"
+          required
+        />
+      </div>
+      <div class="form-group">
+        <label class="from-labels" for="email">Product description</label>
+        <input
+          class="form-input"
+          type="text area"
+          name="description"
+          id="description"
+          placeholder="Please describe the product"
+          required
+        />
+      </div>
+
+      <div class="form-group"></div>
+      <!--For the contact label-->
+      <div class="form-group">
+        <label class="from-labels" for="contact">Image Url</label>
+        <input
+          class="form-input"
+          type="file"
+          name="image"
+          id="image"
+          placeholder="enter image online url"
+          required 
+        />
+      </div>
+
+      <!-- The submit button-->
+
+      <button class="button" type="submit">Send</button>
+    </form>
+  </body>
+</html>

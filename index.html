@@ -8,6 +8,13 @@
     <link rel="stylesheet" href="./login.css.css" />
   </head>
   <body>
+    <nav>
+      <ul>
+        <li><a href="./add_new_product.html"> Add product to sell</a></li>
+        <li><a href=""></a></li>
+      </ul>
+    </nav>
+
     <div class="body-container">
       <div class="container">
         <div class="form-wrapper">
@@ -46,7 +53,9 @@
 
               <!-- The submit button-->
               <div class="buttons-flex">
-                <button class="button" type="submit">login</button>
+                <button class="button" onsubmit="redirect()" type="submit">
+                  login
+                </button>
 
                 <a class="register-link" href="./login.html">register</a>
               </div>

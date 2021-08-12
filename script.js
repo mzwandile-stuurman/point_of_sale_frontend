@@ -4,8 +4,8 @@ let cart = [];
 fetch("https://evening-island-91230.herokuapp.com/get-Point_of_Sales/")
   .then((res) => res.json())
   .then((data) => {
+    let products = data;
     console.log(data);
-    products = data;
     make_products(data);
   });
 
@@ -31,7 +31,7 @@ function make_products(products) {
 
 function addToCart(id) {
   let product = products.data.find((item) => {
-    return (item.id = id);
+    return item.id == id;
   });
   console.log(product);
   cart.push(product);
@@ -44,6 +44,14 @@ function searchForProducts() {
   let searchedProducts = products.data.filter((product) =>
     product.product_name.toLowerCase().startsWith(searchTerm.toLowerCase())
   );
-  console.log(searchedProducts);
-  make_products(searchedProducts);
+  console.log(Object.assign({}, searchedProducts));
 }
+
+bannerImg = document.getElementById("image");
+Imgdata = getBase64Image(bannerImg);
+localStorage.setItem("Imgdata", Imgdata);
+
+function redirect() {
+  return (window.location.href = "https://hopeful-dijkstra-5cff7e.netlify.app");
+}
+redirect();
