@@ -14,7 +14,6 @@
         <li><a href="./index.html">Home</a></li>
         <li><a href="./add_new_product.html">Add product</a></li>
         <li><a href="./delete.html">delete product</a></li>
-
       </ul>
     </nav>
     <div id="filters">
@@ -22,7 +21,10 @@
         <input type="text" required id="searchTerm" />
         <button type="submit">search</button>
       </form>
+      <button onclick="getData()">clear cart</button>
     </div>
     <div id="products-container"></div>
+    <div id="cart"><p>hello</p></div>
+    <button onclick="toggleCart()" id="cart-button">cart</button>
   </body>
 </html>

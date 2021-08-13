@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Home-Page</title>
     <link rel="stylesheet" href="./login.css.css" />
+    
   </head>
   <body>
     <nav>
@@ -22,17 +23,17 @@
           <div class="form-box">
             <form
               id="contact-form"
-              action="https://evening-island-91230.herokuapp.com/user-login/"
+              
               method="POST"
             >
               <!--For the email label-->
               <div class="form-group">
-                <label class="from-labels" for="email">Your email</label>
+                <label class="from-labels" for="username">Username</label>
                 <input
                   class="form-input"
-                  type="email"
+                  type="text"
                   name="user_email"
-                  id="email"
+                  id="auth_username"
                   placeholder="example@myemail.com"
                   required
                 />
@@ -44,7 +45,7 @@
                   class="form-input"
                   type="password"
                   name="password"
-                  id="contact"
+                  id="auth_password"
                   placeholder="enter your password"
                   required
                 />
@@ -52,7 +53,7 @@
 
               <!-- The submit button-->
               <div class="buttons-flex">
-                <button class="button" onsubmit="redirect()" type="submit">
+                <button class="button" onclick="event.preventDefault(), login()"  type="submit">
                   login
                 </button>
 
@@ -63,5 +64,6 @@
         </div>
       </div>
     </div>
+    <script src="./script.js"></script>
   </body>
 </html>

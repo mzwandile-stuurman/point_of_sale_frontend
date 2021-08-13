@@ -8,11 +8,7 @@
   </head>
   <body>
     <h3>enter product details</h3>
-    <form
-      id="contact-form"
-      action="https://evening-island-91230.herokuapp.com/create-products/"
-      method="POST"
-    >
+    <form id="contact-form" method="POST">
       <!--For the email label-->
       <div class="form-group">
         <label class="from-labels" for="email">Product name</label>
@@ -40,7 +36,7 @@
         <label class="from-labels" for="email">Product description</label>
         <input
           class="form-input"
-          type="text area"
+          type="textarea"
           name="description"
           id="description"
           placeholder="Please describe the product"
@@ -58,13 +54,22 @@
           name="image"
           id="image"
           placeholder="enter image online url"
-          required 
+          onchange="previewFile()"
+          required
         />
       </div>
 
       <!-- The submit button-->
 
-      <button class="button" type="submit">Send</button>
+      <button
+        onclick="event.preventDefault(), addtocatalogue()"
+        class="button"
+        type="submit"
+      >
+        Send
+      </button>
     </form>
+    <img src="" alt="image-preview" class="imageup" />
+    <script src="./script.js"></script>
   </body>
 </html>
