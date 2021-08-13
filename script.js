@@ -69,9 +69,8 @@ function renderCart(cartItems) {
       
       
       `;
-      
     });
-    let totalPrice = cartItems.reduce((total, item) => total + item.price)
+    let totalPrice = cartItems.reduce((total, item) => total + item.price);
   } else {
     cartContainer.innerHTML = "<h2> No items in cart</h2>";
   }
@@ -102,7 +101,7 @@ function searchForProducts() {
 const mystorage = window.localStorage;
 
 function login() {
-  fetch("https://evening-island-91230.herokuapp.com/auth", {
+  fetch("http://127.0.0.1:5000/auth", {
     method: "POST",
     body: JSON.stringify({
       username: document.getElementById("auth_username").value,
@@ -127,38 +126,58 @@ function login() {
     });
 }
 
-//
-
-function previewFile() {
-  image = document.querySelector(".imageup");
-  const file = document.querySelector("#image").files[0];
-  const reader = new FileReader();
-
-  reader.addEventListener(
-    "load",
-    function () {
-      // convert image file to base64 string
-      image.src = reader.result;
+function register() {
+  fetch("http://127.0.0.1:5000/user-registration/", {
+    method: "POST",
+    body: JSON.stringify({
+      first_name: document.getElementById("first_name").value,
+      last_name: document.getElementById("last_name").value,
+      username: document.getElementById("username").value,
+      password: document.getElementById("password").value,
+      address: document.getElementById("address").value,
+      phone_number: document.getElementById("phone_number").value,
+      user_email: document.getElementById("user_email").value,
+    }),
+    headers: {
+      "Content-type": "application/json",
     },
-    false
-  );
-
-  if (file) {
-    reader.readAsDataURL(file);
-    console.log(reader.readAsDataURL(file));
-  }
+  })
+    .then((response) => response.json())
+    .then((data) => {
+      console.log(data);
+      if (data["message"] == "success") {
+        alert("Registered successfully!, please log in.");
+        window.location.href = "./index.html";
+      } else {
+        alert("Please enter correct information");
+      }
+    });
 }
 
+//
+
+//function previewFile() {
+//image = document.querySelector(".imageup");
+//const file = document.querySelector("#image").files[0];
+//const reader = new FileReader();
+
+//reader.addEventListener(
+//"load",
+//function () {
+// convert image file to base64 string
+//image.src = reader.result;
+//},
+//false
+//);
+
+//if (file) {
+//reader.readAsDataURL(file);
+//console.log(reader.readAsDataURL(file));
+//}
+//}
+
 function addtocatalogue() {
-  // console.log({
-  //     "product_id": document.getElementById("aid").value,
-  //         "product_name": document.getElementById("aname").value,
-  //         "product_type": document.getElementById("atype").value,
-  //         "product_quantity": document.getElementById("aquantity").value,
-  //         "product_price": document.getElementById("aprice").value,
-  //         "product_image": document.getElementById("aimage").files[0],}
-  // )
-  fetch(`https://evening-island-91230.herokuapp.com/create-products/`, {
+  fetch("http://127.0.0.1:5000/create-products/", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -175,5 +194,11 @@ function addtocatalogue() {
     .then((data) => {
       console.log(data);
       console.log("success");
+      if (data["description"] == "Product added succesfully") {
+        alert("product added successfuly");
+        window.location.href = "./products.html";
+      } else {
+        alert("did not add!, please make sure the information is correct.");
+      }
     });
 }

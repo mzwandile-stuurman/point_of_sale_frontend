@@ -9,11 +9,7 @@
   </head>
   <body>
     <h3>Please enter login dedtails</h3>
-    <form
-      id="contact-form"
-      action="https://evening-island-91230.herokuapp.com/user-registration/"
-      method="POST"
-    >
+    <form id="contact-form" method="POST">
       <!--For the email label-->
       <div class="form-group">
         <label class="from-labels" for="email">First Name</label>
@@ -57,7 +53,7 @@
           class="form-input"
           type="password"
           name="password"
-          id="contact"
+          id="password"
           placeholder="enter your password"
           required
         />
@@ -100,7 +96,14 @@
 
       <!-- The submit button-->
 
-      <button class="button" type="submit">Send</button>
+      <button
+        class="button"
+        onclick="event.preventDefault(), register()"
+        type="submit"
+      >
+        Register
+      </button>
     </form>
+    <script src="./script.js"></script>
   </body>
 </html>
