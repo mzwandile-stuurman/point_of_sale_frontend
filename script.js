@@ -1,5 +1,6 @@
 let products = [];
 let cart = [];
+//mylocstorage =
 
 function getData() {
   fetch("https://evening-island-91230.herokuapp.com/get-Point_of_Sales/")
@@ -63,7 +64,7 @@ function renderCart(cartItems) {
                 <h4 class = "product-title"> ${cartItem.product_name}</h4>
                 <p class = "product-description"> ${cartItem.description}</p>
                 <p class = "product-price">R${cartItem.price} </p>
-                <button class ="revome_cart" onclick="removeItem()">Remove item</button>
+                <button class ="revome_cart" onclick="removeItem(${cartItem.id})">Remove item</button>
             </div>
             
         </div>
@@ -83,9 +84,8 @@ function addToCart(id) {
   let product = products.data.find((item) => {
     return item.id == id;
   });
-  console.log(product);
+
   cart.push(product);
-  console.log(cart);
   renderCart(cart);
 }
 
@@ -119,8 +119,17 @@ function deleteProduct(id1) {
   console.log(cart);
 }
 
-function removeItem() {
-  console.log(cart);
+function removeItem(id) {
+  let product = products.data.find((item) => {
+    return item.id == id;
+  });
+  //console.log(product);
+
+  cart.splice(
+    cart.findIndex((a) => a.id === product.id),
+    1
+  );
+  renderCart(cart);
 }
 
 function searchForProducts() {
@@ -263,6 +272,9 @@ function userInfo() {
   localStorage.setItem("Phonenumber", JSON.stringify(phone_number));
   user_email = document.querySelector("#user_email").value;
   localStorage.setItem("email", JSON.stringify(user_email));
+
+  user_log = document.querySelector("#auth_username").value;
+  
 
   var i;
   console.log("local storage");
