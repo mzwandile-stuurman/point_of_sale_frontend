@@ -167,8 +167,14 @@ function login() {
       } else {
         console.log(data["access_token"]);
         mystorage.setItem("jwt-token", data["access_token"]);
-        myuser.setItem(document.getElementById("auth_username"));
-        mypass.setItem(document.getElementById("auth_password"));
+        myuser.setItem(
+          "auth_username",
+          document.getElementById("auth_username")
+        );
+        mypass.setItem(
+          "auth_password",
+          document.getElementById("auth_password")
+        );
 
         window.location.href = "./products.html";
       }
@@ -298,7 +304,10 @@ function viewUserInfo() {}
 // fetch users
 
 function userProfile() {
-  fetch("https://evening-island-91230.herokuapp.com/get-users/")
+  fetch(
+    "https://evening-island-91230.herokuapp.com/get-user-password/" +
+      `${localStorage.getItem("auth_username")}`
+  )
     .then((res) => res.json())
     .then((data) => {
       console.log(data);
@@ -312,12 +321,11 @@ userProfile();
 //localStorage.getItem("lastname");
 
 // user info
-const id = window.localStorage;
 
 function getID() {
   fetch(
-    "https://lca-pointofsales.herokuapp.com//user-data/" +
-      `${localStorage.getItem("userID")}`,
+    "https://evening-island-91230.herokuapp.com/get-users/" +
+      `${localStorage.getItem("")}`,
     {
       method: "GET",
     }
