@@ -6,41 +6,51 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Home-Page</title>
     <link rel="stylesheet" href="./login.css.css" />
-    
   </head>
   <body>
-    <nav>
-      <ul>
-        <li><a href="./add_new_product.html"> Add product to sell</a></li>
+    <nav class="nav-bar">
+      <ul class="nav-list">
+        <li class="nav-link"></li>
+
+        <li class="nav-link">
+          <a class="nav-links" href="./add_new_product.html">
+            Add product to sell</a
+          >
+        </li>
+        <li class="nav-link"></li>
       </ul>
     </nav>
 
     <div class="body-container">
       <div class="container">
+        <div class="about">
+          <h2 class="home-heading">Feel Free!</h2>
+          <p class="home-details">
+            Get the latest technology at our service. From card machines to
+            cellphones. Add your own product to sell, make changes to improve
+            products and ofcourse buy some of your favourite products.
+          </p>
+        </div>
         <div class="form-wrapper">
           <img src="" alt="" />
           <h1 class="heading">Login/Register</h1>
           <div class="form-box">
-            <form
-              id="contact-form"
-              
-              method="POST"
-            >
+            <form id="contact-form" method="POST">
               <!--For the email label-->
               <div class="form-group">
-                <label class="from-labels" for="username">Username</label>
+                <label class="form-labels" for="username">Username</label>
                 <input
                   class="form-input"
                   type="text"
                   name="user_email"
                   id="auth_username"
-                  placeholder="example@myemail.com"
+                  placeholder="enter username"
                   required
                 />
               </div>
               <!--For the contact label-->
               <div class="form-group">
-                <label class="from-labels" for="contact">Password</label>
+                <label class="form-labels" for="contact">Password</label>
                 <input
                   class="form-input"
                   type="password"
@@ -53,7 +63,11 @@
 
               <!-- The submit button-->
               <div class="buttons-flex">
-                <button class="button" onclick="event.preventDefault(), login()"  type="submit">
+                <button
+                  class="button"
+                  onclick="event.preventDefault(), login()"
+                  type="submit"
+                >
                   login
                 </button>
 

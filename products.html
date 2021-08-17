@@ -5,28 +5,21 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Prtoducts</title>
-    <script src="./script.js"></script>
+
     <link rel="stylesheet" href="./products.css" />
   </head>
   <body>
-    <nav>
-      <ul>
-        <li><a href="./index.html">Home</a></li>
-        <li><a href="./add_new_product.html">Add product</a></li>
-        <li><a href="./delete.html">delete product</a></li>
-        <li><a href="">Update a product</a></li>
-        <li><a href="">View Profile</a></li>
-      </ul>
-    </nav>
-    <div id="filters">
-      <form onsubmit="event.preventDefault(); searchForProducts()">
-        <input type="text" required id="searchTerm" />
-        <button type="submit">search</button>
-      </form>
-      <button onclick="getData()">clear cart</button>
+    <div class="topnav">
+      <a class="active" href="#home">Home</a>
+      <a href="#about">About</a>
+      <a href="#contact">Contact</a>
+      <input type="text" placeholder="Search.." />
+      <button type="submit">search</button>
     </div>
+
     <div id="products-container"></div>
-    <div id="cart"><p>hello</p></div>
-    <button onclick="toggleCart()" id="cart-button">cart</button>
+    <div id="cart"><p>You have no items in the cart</p></div>
+    <button onclick="toggleCart()" id="cart-button">View Cart</button>
+    <script src="./script.js"></script>
   </body>
 </html>

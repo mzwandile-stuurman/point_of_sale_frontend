@@ -1,11 +1,12 @@
 * {
   box-sizing: border-box;
+  padding: 0;
+  margin: 0;
 }
 body {
   background: #fff;
-  background-size: contain;
-  background-repeat: no-repeat;
-  padding: 5% 10%;
+
+  padding: 10% 10%;
 
   font-family: sans-serif;
   color: #222;
@@ -51,10 +52,16 @@ body {
   text-decoration: none;
   border: solid 1px gray;
   padding: 5px;
+  color: #222;
+}
+
+.register-link:hover {
+  color: #fff;
+  background-color: #20c997;
 }
 
 .form-wrapper {
-  background-color: #fff;
+  background-color: #f8f9fa;
   border-radius: 6px;
   padding: 3%;
   width: 50%;
@@ -99,6 +106,7 @@ body {
 .home-heading {
   color: #222;
   font-size: 2em;
+  margin-bottom: 20px;
 }
 
 .heading {
