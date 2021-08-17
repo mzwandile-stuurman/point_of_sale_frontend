@@ -152,6 +152,7 @@ function login() {
     body: JSON.stringify({
       username: document.getElementById("auth_username").value,
       password: document.getElementById("auth_password").value,
+      mode: no - cors,
     }),
     headers: {
       "Content-type": "application/json",
@@ -212,26 +213,6 @@ function register() {
 }
 
 //
-
-//function previewFile() {
-//image = document.querySelector(".imageup");
-//const file = document.querySelector("#image").files[0];
-//const reader = new FileReader();
-
-//reader.addEventListener(
-//"load",
-//function () {
-// convert image file to base64 string
-//image.src = reader.result;
-//},
-//false
-//);
-
-//if (file) {
-//reader.readAsDataURL(file);
-//console.log(reader.readAsDataURL(file));
-//}
-//}
 
 function addtocatalogue() {
   fetch("https://evening-island-91230.herokuapp.com/create-products/", {
