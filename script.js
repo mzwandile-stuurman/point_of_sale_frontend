@@ -155,6 +155,7 @@ function login() {
     }),
     headers: {
       "Content-type": "application/json",
+      Authorization: `jwt ${mystorage.getItem("jwt-token")}`,
     },
   })
     .then((response) => response.json())
@@ -195,6 +196,7 @@ function register() {
     }),
     headers: {
       "Content-type": "application/json",
+      Authorization: `jwt ${mystorage.getItem("jwt-token")}`,
     },
   })
     .then((response) => response.json())
@@ -266,38 +268,13 @@ function toggleCart() {
 }
 
 function userInfo() {
-  firstname = document.querySelector("#first_name").value;
-  localStorage.setItem("Firstname", JSON.stringify(firstname));
-  lastname = document.querySelector("#last_name").value;
-  localStorage.setItem("Lastname", JSON.stringify(lastname));
-  username = document.querySelector("#username").value;
-  localStorage.setItem("Username", JSON.stringify(username));
-  password = document.querySelector("#password").value;
-  localStorage.setItem("Password", JSON.stringify(password));
-  address = document.querySelector("#address").value;
-  localStorage.setItem("Address", JSON.stringify(address));
-  lastname = document.querySelector("#last_name").value;
-  localStorage.setItem("Lastname", JSON.stringify(lastname));
-  phone_number = document.querySelector("#phone_number").value;
-  localStorage.setItem("Phonenumber", JSON.stringify(phone_number));
-  user_email = document.querySelector("#user_email").value;
-  localStorage.setItem("email", JSON.stringify(user_email));
-
-  user_log = document.querySelector("#auth_username").value;
-
-  var i;
-  console.log("local storage");
-  for (i = 0; i < localStorage.length; i++) {
-    console.log(
-      localStorage.key(i) +
-        "=[" +
-        localStorage.getItem(localStorage.key(i)) +
-        "]"
-    );
-  }
+  username = document.querySelector("#auth_username").value;
+  console.log(username);
+  localStorage.setItem("auth_username", JSON.stringify(username));
+  password = document.querySelector("#auth_password").value;
+  localStorage.setItem("auth_password", JSON.stringify(password));
   console.log(localStorage);
 }
-userInfo();
 
 function viewUserInfo() {}
 
@@ -322,30 +299,7 @@ userProfile();
 
 // user info
 
-function getID() {
-  fetch(
-    "https://evening-island-91230.herokuapp.com/get-users/" +
-      `${localStorage.getItem("")}`,
-    {
-      method: "GET",
-    }
-  )
-    .then((res) => res.json())
-    .then((data) => {
-      // console.log(data)
-      // id.setItem()
-
-      let userID = data.data;
-
-      console.log(userID);
-
-      id.setItem("id", userID);
-    });
-}
-
-getID();
-
-function userInfo() {
+function userInfo2() {
   fetch(
     "https://lca-pointofsales.herokuapp.com//user-profile/" +
       `${id.getItem("id")}`,
@@ -380,6 +334,3 @@ function userInfo() {
                 </div>`;
     });
 }
-
-userInfo();
-e;
