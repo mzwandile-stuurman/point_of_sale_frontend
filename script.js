@@ -2,6 +2,7 @@ let products = [];
 let cart = [];
 //mylocstorage =
 
+// function to fetch all products
 function getData() {
   fetch("https://evening-island-91230.herokuapp.com/get-Point_of_Sales/")
     .then((res) => res.json())
@@ -14,6 +15,76 @@ function getData() {
 
 getData();
 
+// function to fetch all users database
+function getUsers() {
+  fetch("https://evening-island-91230.herokuapp.com/get-users/")
+    .then((res) => res.json())
+    .then((data) => {
+      console.log(data);
+      let user_auth = document.querySelector("#user_password").value;
+      let user_container = document.querySelector(".user-data");
+      const anyAdult = data.some((firstname) => firstname.password == user_auth);
+      console.log(anyAdult)
+      data.forEach((user) => {
+        user_container.innerHTML += `
+
+            <div class = "users">
+              <div class = "product-content"> 
+                <p class = "user-id"> User ID : ${user.user_id} </p>
+                <p class = "product-title"> First Name: ${user.first_name}</p>
+                <p class = "product-description">Last Name: ${user.last_name}</p>
+                <p class = "product-price">Username: ${user.username} </p>
+                <p class = "product-title">User email: ${user.user_email}</p>
+                <p class = "product-description">Phone number: ${user.phone_number}</p>
+                <p class = "product-price">Password: ${user.password} </p>
+                <p class = "user-adress"> Address: ${user.address} </p>
+
+              </div>
+            </div>`;
+      });
+    });
+}
+
+function login() {
+  fetch("https://evening-island-91230.herokuapp.com/get-users/", {
+    method: "POST",
+    body: JSON.stringify({
+      username: document.getElementById("auth_username").value,
+      password: document.getElementById("auth_password").value,
+    }),
+    headers: {
+      "Content-type": "application/json",
+      Authorization: `jwt ${mystorage.getItem("jwt-token")}`,
+    },
+  })
+    .then((response) => response.json())
+    .then((data) => {
+      console.log(data);
+      if (data["description"] == "Invalid credentials") {
+        alert(
+          "Username or password is incorrect. Please enter correct details"
+        );
+      } else {
+        console.log(data["access_token"]);
+        mystorage.setItem("jwt-token", data["access_token"]);
+        myuser.setItem(
+          "auth_username",
+          document.getElementById("auth_username")
+        );
+        mypass.setItem(
+          "auth_password",
+          document.getElementById("auth_password")
+        );
+
+        window.location.href = "./products.html";
+      }
+    });
+}
+
+function showUsers(users) {}
+showUsers();
+
+// function to show all products
 function make_products(products) {
   let product_container = document.querySelector("#products-container");
   product_container.innerHTML = "";
@@ -52,6 +123,7 @@ function make_products(products) {
   }
 }
 
+// function to show items in the cart
 function renderCart(cartItems) {
   let cartContainer = document.querySelector("#cart");
   cartContainer.innerHTML = "";
@@ -79,6 +151,7 @@ function renderCart(cartItems) {
   }
 }
 
+// funtion to add to cart
 function addToCart(id) {
   console.log(products.data);
   let product = products.data.find((item) => {
@@ -91,15 +164,15 @@ function addToCart(id) {
 
 function deleteProduct(id1) {
   let product = products.data.find((item) => {
-    return item.id == id1;
+    return item.pass == id1;
   });
   let prod_id = product.id;
   console.log(prod_id);
 
   fetch("https://evening-island-91230.herokuapp.com/delete-product-front/", {
-    method: "POST",
+    method: "GET",
     body: JSON.stringify({
-      id: prod_id,
+      password: prod_id,
     }),
     headers: {
       "Content-type": "application/json",
@@ -118,7 +191,7 @@ function deleteProduct(id1) {
   console.log(product);
   console.log(cart);
 }
-
+// function to remove item from cart
 function removeItem(id) {
   let product = products.data.find((item) => {
     return item.id == id;
@@ -142,17 +215,18 @@ function searchForProducts() {
   console.log(Object.entries(searchedProducts));
   make_products(Object.entries(searchForProducts));
 }
-
+// store token and login details to local storage
 const mystorage = window.localStorage;
 const myuser = window.localStorage;
 const mypass = window.localStorage;
+
+// function to login
 function login() {
   fetch("https://evening-island-91230.herokuapp.com/auth", {
     method: "POST",
     body: JSON.stringify({
       username: document.getElementById("auth_username").value,
       password: document.getElementById("auth_password").value,
-      mode: no - cors,
     }),
     headers: {
       "Content-type": "application/json",
@@ -183,6 +257,7 @@ function login() {
     });
 }
 
+// function to register user
 function register() {
   fetch("https://evening-island-91230.herokuapp.com/user-registration/", {
     method: "POST",
@@ -214,6 +289,7 @@ function register() {
 
 //
 
+// function for user to add new product
 function addtocatalogue() {
   fetch("https://evening-island-91230.herokuapp.com/create-products/", {
     method: "POST",
@@ -243,7 +319,7 @@ function addtocatalogue() {
 }
 
 // Cart
-
+// view cart
 function toggleCart() {
   document.querySelector("#cart").classList.toggle("active");
 }
@@ -271,7 +347,6 @@ function userProfile() {
       console.log(data);
     });
 }
-userProfile();
 
 //localStorage.setItem("lastname", "Smith");
 
