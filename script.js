@@ -17,16 +17,29 @@ getData();
 
 // function to fetch all users database
 function getUsers() {
-  fetch("https://evening-island-91230.herokuapp.com/get-users/")
+  let user_auth = document.querySelector("#user_password").value;
+  fetch("https://evening-island-91230.herokuapp.com/get-password/", {
+    method: "POST",
+    body: JSON.stringify({
+      password: user_auth,
+    }),
+    headers: {
+      "Content-type": "application/json",
+      Authorization: `jwt ${mystorage.getItem("jwt-token")}`,
+    },
+  })
     .then((res) => res.json())
     .then((data) => {
-      users = data
+      users = data;
       console.log(data);
-      let user_auth = document.querySelector("#user_password").value;
+
       let user_container = document.querySelector(".user-data");
-      const anyAdult = users.data.some((firstname) => firstname.password == user_auth);
-      console.log(anyAdult)
-      users.data.forEach((user) => {
+      const anyAdult = users.data.some(
+        (firstname) => firstname.password == user_auth
+      );
+      console.log(anyAdult);
+
+      if (anyAdult == true) {
         user_container.innerHTML += `
 
             <div class = "users">
@@ -42,7 +55,9 @@ function getUsers() {
 
               </div>
             </div>`;
-      });
+      } else {
+        alert("credentials not correct, cant show user info");
+      }
     });
 }
 
