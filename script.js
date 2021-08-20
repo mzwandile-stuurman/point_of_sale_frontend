@@ -18,46 +18,38 @@ getData();
 // function to fetch all users database
 function getUsers() {
   let user_auth = document.querySelector("#user_password").value;
-  fetch("https://evening-island-91230.herokuapp.com/get-password/", {
-    method: "POST",
-    body: JSON.stringify({
-      password: user_auth,
-    }),
-    headers: {
-      "Content-type": "application/json",
-      Authorization: `jwt ${mystorage.getItem("jwt-token")}`,
-    },
-  })
+  fetch(
+    `https://evening-island-91230.herokuapp.com/get-password/${user_auth}/`,
+    {
+      method: "GET",
+      headers: {
+        "Content-type": "application/json",
+        Authorization: `jwt ${mystorage.getItem("jwt-token")}`,
+      },
+    }
+  )
     .then((res) => res.json())
     .then((data) => {
       users = data;
       console.log(data);
 
       let user_container = document.querySelector(".user-data");
-      const anyAdult = users.data.some(
-        (firstname) => firstname.password == user_auth
-      );
-      console.log(anyAdult);
 
-      if (anyAdult == true) {
-        user_container.innerHTML += `
+      user_container.innerHTML += `
 
-            <div class = "users">
-              <div class = "product-content"> 
-                <p class = "user-id"> User ID : ${user.user_id} </p>
-                <p class = "product-title"> First Name: ${user.first_name}</p>
-                <p class = "product-description">Last Name: ${user.last_name}</p>
-                <p class = "product-price">Username: ${user.username} </p>
-                <p class = "product-title">User email: ${user.user_email}</p>
-                <p class = "product-description">Phone number: ${user.phone_number}</p>
-                <p class = "product-price">Password: ${user.password} </p>
-                <p class = "user-adress"> Address: ${user.address} </p>
+          <div class = "users">
+            <div class = "product-content"> 
+              <p class = "user-id"> User ID : ${data.data[0][0]} </p>
+              <p class = "product-title"> First Name: ${data.data[0][1]}</p>
+              <p class = "product-description">Last Name: ${data.data[0][2]}</p>
+              <p class = "product-price">Username: ${data.data[0][3]} </p>
+              <p class = "product-title">User email: ${data.data[0][4]}</p>
+              <p class = "product-description">Phone number: ${data.data[0][5]}</p>
+              <p class = "product-price">Password: ${data.data[0][6]} </p>
+              <p class = "user-adress"> Address: ${data.data[0][7]} </p>
 
-              </div>
-            </div>`;
-      } else {
-        alert("credentials not correct, cant show user info");
-      }
+            </div>
+          </div>`;
     });
 }
 
@@ -70,7 +62,6 @@ function login() {
     }),
     headers: {
       "Content-type": "application/json",
-      Authorization: `jwt ${mystorage.getItem("jwt-token")}`,
     },
   })
     .then((response) => response.json())
@@ -182,7 +173,9 @@ function deleteProduct(id1) {
   let product = products.data.find((item) => {
     return item.pass == id1;
   });
+
   let prod_id = product.id;
+
   console.log(prod_id);
 
   fetch("https://evening-island-91230.herokuapp.com/delete-product-front/", {
